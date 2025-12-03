@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbots PNL - Catálogo de Librerías</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0066cc 0%, #cc0000 100%);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #003d82 0%, #0066cc 30%, #cc0000 70%, #ff0000 100%);
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            color: #ffd700;
+            text-align: center;
+            z-index: 10;
+            text-shadow: 
+                3px 3px 0px #cc0000,
+                -3px -3px 0px #0066cc,
+                0 0 30px rgba(255, 215, 0, 0.5);
+            animation: fadeInUp 1s ease;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animated Superman symbols */
+        .superman-symbol {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.15;
+            animation: float 8s ease-in-out infinite;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .symbol1 {
+            top: 15%;
+            left: 10%;
+            font-size: 5rem;
+            animation-delay: 0s;
+        }
+
+        .symbol2 {
+            top: 60%;
+            right: 12%;
+            font-size: 4.5rem;
+            animation-delay: 1.5s;
+        }
+
+        .symbol3 {
+            bottom: 20%;
+            left: 15%;
+            font-size: 3.5rem;
+            animation-delay: 3s;
+        }
+
+        .symbol4 {
+            top: 35%;
+            right: 20%;
+            font-size: 6rem;
+            animation-delay: 2s;
+        }
+
+        .symbol5 {
+            top: 70%;
+            left: 40%;
+            font-size: 4rem;
+            animation-delay: 4s;
+        }
+
+        /* Diamond shapes like Superman's logo */
+        .diamond {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            transform: rotate(45deg);
+            opacity: 0.1;
+            animation: rotate 10s linear infinite;
+        }
+
+        .diamond1 {
+            top: 20%;
+            right: 25%;
+            animation-delay: 0s;
+        }
+
+        .diamond2 {
+            bottom: 25%;
+            right: 35%;
+            width: 100px;
+            height: 100px;
+            animation-delay: 2s;
+        }
+
+        .diamond3 {
+            top: 50%;
+            left: 25%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-30px) rotate(10deg) scale(1.1);
+            }
+            50% {
+                transform: translateY(20px) rotate(-10deg) scale(0.9);
+            }
+            75% {
+                transform: translateY(-15px) rotate(5deg) scale(1.05);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(45deg);
+            }
+            100% {
+                transform: rotate(405deg);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 80px;
+        }
+
+        .category-title {
+            font-size: 3rem;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 
+                2px 2px 0px #cc0000,
+                -2px -2px 0px #0066cc,
+                0 0 20px rgba(255, 215, 0, 0.5);
+            font-weight: 900;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .library-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
+            border-radius: 15px;
+            padding: 25px 35px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+            min-height: 140px;
+        }
+
+        .library-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg, #0066cc 0%, #cc0000 50%, #ffd700 100%);
+        }
+
+        .library-card:hover {
+            transform: translateX(10px);
+            box-shadow: 
+                0 15px 40px rgba(204, 0, 0, 0.4),
+                0 0 30px rgba(0, 102, 204, 0.3);
+            border-color: #ffd700;
+        }
+
+        .library-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .library-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .library-name {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #003d82;
+            text-shadow: 1px 1px 2px rgba(204, 0, 0, 0.3);
+            margin: 0;
+        }
+
+        .library-description {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .install-command {
+            background: #1e1e1e;
+            color: #4ec9b0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            display: inline-block;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .install-command:hover {
+            background: #2d2d2d;
+        }
+
+        .install-command::before {
+            content: '$ ';
+            color: #ce9178;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+                padding: 0 20px;
+            }
+
+            .category-title {
+                font-size: 2rem;
+            }
+
+            .library-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+
+            .library-icon {
+                margin-bottom: 15px;
+            }
+
+            .superman-symbol {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Superman Symbols -->
+        <div class="superman-symbol symbol1">S</div>
+        <div class="superman-symbol symbol2">S</div>
+        <div class="superman-symbol symbol3">S</div>
+        <div class="superman-symbol symbol4">S</div>
+        <div class="superman-symbol symbol5">S</div>
+        
+        <!-- Diamond shapes -->
+        <div class="diamond diamond1"></div>
+        <div class="diamond diamond2"></div>
+        <div class="diamond diamond3"></div>
+        
+        <h1>Chatbots PNL</h1>
+    </section>
+
+    <div class="container">
+        <!-- Chatbot con PNL -->
+        <section class="category-section">
+            <h2 class="category-title">🤖 Chatbot con PNL</h2>
+            <div class="cards-grid">
+                <div class="library-card">
+                    <div class="library-icon">📝</div>
+                    <div class="library-content">
+                        <h3 class="library-name">NLTK</h3>
+                        <p class="library-description">Natural Language Toolkit para procesamiento de texto, tokenización y análisis lingüístico básico.</p>
+                        <code class="install-command">pip install nltk</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">⚡</div>
+                    <div class="library-content">
+                        <h3 class="library-name">spaCy</h3>
+                        <p class="library-description">Librería de PNL industrial rápida y eficiente para análisis sintáctico y reconocimiento de entidades.</p>
+                        <code class="install-command">pip install spacy</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">💭</div>
+                    <div class="library-content">
+                        <h3 class="library-name">TextBlob</h3>
+                        <p class="library-description">API simple para análisis de sentimientos, clasificación de texto y traducción automática.</p>
+                        <code class="install-command">pip install textblob</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chatbot con IA -->
+        <section class="category-section">
+            <h2 class="category-title">🧠 Chatbot con IA</h2>
+            <div class="cards-grid">
+                <div class="library-card">
+                    <div class="library-icon">🔥</div>
+                    <div class="library-content">
+                        <h3 class="library-name">TensorFlow</h3>
+                        <p class="library-description">Framework de machine learning para crear modelos de redes neuronales y deep learning avanzados.</p>
+                        <code class="install-command">pip install tensorflow</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">🎯</div>
+                    <div class="library-content">
+                        <h3 class="library-name">PyTorch</h3>
+                        <p class="library-description">Plataforma flexible de aprendizaje profundo con computación dinámica para investigación y producción.</p>
+                        <code class="install-command">pip install torch</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">🤗</div>
+                    <div class="library-content">
+                        <h3 class="library-name">Transformers</h3>
+                        <p class="library-description">Modelos pre-entrenados de Hugging Face como GPT, BERT para generación y comprensión de lenguaje.</p>
+                        <code class="install-command">pip install transformers</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">🎨</div>
+                    <div class="library-content">
+                        <h3 class="library-name">Rasa</h3>
+                        <p class="library-description">Framework completo para construir asistentes conversacionales con machine learning contextual.</p>
+                        <code class="install-command">pip install rasa</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chatbot conectado a plataformas -->
+        <section class="category-section">
+            <h2 class="category-title">🔗 Chatbot Conectado a Plataformas</h2>
+            <div class="cards-grid">
+                <div class="library-card">
+                    <div class="library-icon">💬</div>
+                    <div class="library-content">
+                        <h3 class="library-name">Python-Telegram-Bot</h3>
+                        <p class="library-description">Wrapper de la API de Telegram para crear bots interactivos con comandos y mensajes.</p>
+                        <code class="install-command">pip install python-telegram-bot</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">📱</div>
+                    <div class="library-content">
+                        <h3 class="library-name">Twilio</h3>
+                        <p class="library-description">API para integración con WhatsApp, SMS y llamadas telefónicas programáticas.</p>
+                        <code class="install-command">pip install twilio</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">💼</div>
+                    <div class="library-content">
+                        <h3 class="library-name">Slack SDK</h3>
+                        <p class="library-description">Herramientas para crear bots empresariales integrados con canales y eventos de Slack.</p>
+                        <code class="install-command">pip install slack-sdk</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">👥</div>
+                    <div class="library-content">
+                        <h3 class="library-name">Facebook Messenger</h3>
+                        <p class="library-description">Bot Framework para desarrollar chatbots en Messenger con plantillas y respuestas rápidas.</p>
+                        <code class="install-command">pip install fbmessenger</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chatbot en páginas web -->
+        <section class="category-section">
+            <h2 class="category-title">🌐 Chatbot en Páginas Web</h2>
+            <div class="cards-grid">
+                <div class="library-card">
+                    <div class="library-icon">🌶️</div>
+                    <div class="library-content">
+                        <h3 class="library-name">Flask</h3>
+                        <p class="library-description">Micro-framework web ligero para crear APIs REST y backends de chatbots rápidamente.</p>
+                        <code class="install-command">pip install flask</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">⚡</div>
+                    <div class="library-content">
+                        <h3 class="library-name">FastAPI</h3>
+                        <p class="library-description">Framework moderno y rápido para APIs asíncronas con documentación automática integrada.</p>
+                        <code class="install-command">pip install fastapi uvicorn</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">🎸</div>
+                    <div class="library-content">
+                        <h3 class="library-name">Django</h3>
+                        <p class="library-description">Framework web robusto para aplicaciones complejas con ORM, autenticación y administración.</p>
+                        <code class="install-command">pip install django</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">💬</div>
+                    <div class="library-content">
+                        <h3 class="library-name">ChatterBot</h3>
+                        <p class="library-description">Librería conversacional con machine learning que aprende de interacciones previas.</p>
+                        <code class="install-command">pip install chatterbot</code>
+                    </div>
+                </div>
+
+                <div class="library-card">
+                    <div class="library-icon">🔌</div>
+                    <div class="library-content">
+                        <h3 class="library-name">Socket.IO</h3>
+                        <p class="library-description">Comunicación en tiempo real bidireccional entre cliente y servidor para chats instantáneos.</p>
+                        <code class="install-command">pip install python-socketio</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
